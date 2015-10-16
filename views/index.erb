@@ -1,0 +1,22 @@
+<script src="//www.google.com/jsapi"></script>
+<script src="chartkick.js"></script>
+
+<h1>HackHands Insights</h2>
+<% if session[:nickname] %>
+    <h2>Hello <%= session[:nickname] %></h2>
+<% else %>
+    <a href='/auth/slack'>Sign in with Slack</a>
+<% end %>
+
+<%= pie_chart @department_group_count %>
+
+<% @departments_by_hour.each do |department_by_hour| %>
+    <h3><%= department_by_hour['department'] %></h3>
+    <%= area_chart department_by_hour['value'] %>
+<% end %>
+
+<ul>
+    <% @all_requests.each do |r| %>
+        <li><%= Time.at(r[:timespan]) %> | <%= r[:department] %></li>
+    <% end %>
+</ul>
