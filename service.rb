@@ -70,11 +70,9 @@ end
 
 def departments_by_hour(hh_requests)
   all_departments = hh_requests.select_group(:department).all
-  result = []
-  all_departments.each do |d|
-    result << Hash['department', d[:department], 'value', group_department_by_hour(hh_requests, d[:department])]
+  all_departments.map do |d|
+    Hash['department', d[:department], 'value', group_department_by_hour(hh_requests, d[:department])]
   end
-  result
 end
 
 #CONTROLLERS
