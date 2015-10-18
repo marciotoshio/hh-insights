@@ -12,3 +12,7 @@ gem 'chartkick'
 group :test, :development do
   gem 'byebug'
 end
+
+group :test do
+  gem 'rspec'
+end
